@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/Environment/TileSet/LPC_house_interior/interior.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/InteriourHouse1.gd" type="Script" id=2]
+
+[sub_resource type="TileSet" id=1]
+0/name = "interior.png 0"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 480, 416 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15, 17.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 18 )
+
+[node name="InteriourHouse1" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="FloorAndWall" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 65539, 1, 0, 131073, 2, 0, 131075, 3, 0, 131075, 4, 0, 131075, 5, 0, 131075, 6, 0, 131075, 7, 0, 131075, 8, 0, 131075, 9, 0, 131075, 10, 0, 131075, 11, 0, 131075, 12, 0, 131075, 13, 0, 131075, 14, 0, 131072, 15, 0, 65539, 65536, 0, 65539, 65537, 0, 65540, 65538, 0, 262144, 65539, 0, 262144, 65540, 0, 262144, 65541, 0, 262144, 65542, 0, 262144, 65543, 0, 262144, 65544, 0, 262144, 65545, 0, 262144, 65546, 0, 196608, 65547, 0, 196608, 65548, 0, 196608, 65549, 0, 196608, 65550, 0, 65538, 65551, 0, 65539, 131072, 0, 65539, 131073, 0, 65540, 131074, 0, 262144, 131075, 0, 262144, 131076, 0, 262144, 131077, 0, 262144, 131078, 0, 262144, 131079, 0, 262144, 131080, 0, 262144, 131081, 0, 262144, 131082, 0, 262145, 131083, 0, 262145, 131084, 0, 262145, 131085, 0, 262145, 131086, 0, 65538, 131087, 0, 65539, 196608, 0, 65539, 196609, 0, 65540, 196610, 0, 262144, 196611, 0, 262144, 196612, 0, 262144, 196613, 0, 262144, 196614, 0, 262144, 196615, 0, 262144, 196616, 0, 262144, 196617, 0, 262144, 196618, 0, 262145, 196619, 0, 262145, 196620, 0, 262145, 196621, 0, 262145, 196622, 0, 65538, 196623, 0, 65539, 262144, 0, 65539, 262145, 0, 65540, 262146, 0, 262144, 262147, 0, 262144, 262148, 0, 262144, 262149, 0, 262144, 262150, 0, 262144, 262151, 0, 262144, 262152, 0, 262144, 262153, 0, 262144, 262154, 0, 262145, 262155, 0, 262145, 262156, 0, 262145, 262157, 0, 262145, 262158, 0, 65538, 262159, 0, 65539, 327680, 0, 65539, 327681, 0, 65540, 327682, 0, 262144, 327683, 0, 262144, 327684, 0, 262144, 327685, 0, 262144, 327686, 0, 262144, 327687, 0, 262144, 327688, 0, 262144, 327689, 0, 262144, 327690, 0, 262144, 327691, 0, 262144, 327692, 0, 262144, 327693, 0, 262144, 327694, 0, 65538, 327695, 0, 65539, 393216, 0, 65539, 393217, 0, 65540, 393218, 0, 262144, 393219, 0, 262144, 393220, 0, 262144, 393221, 0, 262144, 393222, 0, 262144, 393223, 0, 262144, 393224, 0, 262144, 393225, 0, 262144, 393226, 0, 262144, 393227, 0, 262144, 393228, 0, 262144, 393229, 0, 262144, 393230, 0, 65538, 393231, 0, 65539, 458752, 0, 65539, 458753, 0, 65540, 458754, 0, 262144, 458755, 0, 262144, 458756, 0, 262144, 458757, 0, 262144, 458758, 0, 262144, 458759, 0, 262144, 458760, 0, 262144, 458761, 0, 262144, 458762, 0, 262144, 458763, 0, 262144, 458764, 0, 262144, 458765, 0, 262144, 458766, 0, 65538, 458767, 0, 65539, 524288, 0, 65539, 524289, 0, 65537, 524290, 0, 3, 524291, 0, 3, 524292, 0, 3, 524293, 0, 3, 524294, 0, 4, 524295, 0, 262144, 524296, 0, 262144, 524297, 0, 2, 524298, 0, 3, 524299, 0, 3, 524300, 0, 3, 524301, 0, 3, 524302, 0, 65536, 524303, 0, 65539 )
+
+[node name="Furniture" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 65538, 0, 14, 65546, 0, 196611, 65547, 0, 327682, 65548, 0, 327684, 65549, 0, 196610, 131074, 0, 65550, 131078, 0, 12, 131082, 0, 262147, 131083, 0, 327687, 131084, 0, 262148, 131085, 0, 262146, 196610, 0, 131086, 262154, 0, 262145, 262155, 0, 786432, 262156, 0, 786433, 262157, 0, 262145, 327685, 0, 12, 393225, 0, 12 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.48, 0.48 )
+
+[node name="spawnPoint" type="Position2D" parent="."]
+position = Vector2( 256, 251 )
+
+[node name="doorHouse" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="doorHouse"]
+position = Vector2( 257, 283 )
+shape = SubResource( 2 )
+
+[node name="Collisions" type="YSort" parent="."]
+
+[node name="WallsCol" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions/WallsCol"]
+polygon = PoolVector2Array( 0, 289, 219, 288, 221, 256, 63, 256, 64, 124, 96, 124, 96, 53, 96, 41, 319, 39, 319, 83, 448, 84, 448, 254, 291, 256, 294, 288, 491, 287, 491, 2, 2, 2 )
+
+[node name="BagCol1" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/BagCol1"]
+position = Vector2( 176, 180.5 )
+shape = SubResource( 3 )
+
+[node name="BagCol2" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/BagCol2"]
+position = Vector2( 304, 213 )
+shape = SubResource( 3 )
+
+[node name="BagCol3" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/BagCol3"]
+position = Vector2( 208, 86 )
+shape = SubResource( 3 )
+
+[node name="TableCol" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/TableCol"]
+position = Vector2( 384, 146 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="doorHouse" to="." method="_on_doorHouse_body_entered"]
