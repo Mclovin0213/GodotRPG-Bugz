@@ -5,12 +5,14 @@ onready var anim = $anim
 
 export var speed = 100
 export var max_speed = 120
-export var jump_impulse = 30
-export var jump_length = 10
+export var jump_impulse = 10
+export var jump_length = 30
 export var friction = 5
 
 var velocity = Vector2.ZERO
 var state = WANDER
+var curr_position = Vector2.ZERO
+
 
 var knockback = Vector2.ZERO
 var health = 2
@@ -21,6 +23,7 @@ enum {
 	WANDER,
 	ATTACK
 }
+
 
 func _ready():
 	rng.randomize()
@@ -33,27 +36,6 @@ func _physics_process(delta):
 		WANDER:
 			pass
 		ATTACK:
-			pass
-
-func random_jumping():
-	var r_direction = rng.randi_range(1,8)
-	
-	match r_direction:
-		1:
-			pass
-		2:
-			pass
-		3:
-			pass
-		4:
-			pass
-		5:
-			pass
-		6:
-			pass
-		7:
-			pass
-		8:
 			pass
 
 func _on_hitbox_area_entered(area):
@@ -72,3 +54,4 @@ func _on_playerDetector_body_entered(body):
 
 func _on_playerDetector_body_exited(body):
 	pass # Replace with function body.
+

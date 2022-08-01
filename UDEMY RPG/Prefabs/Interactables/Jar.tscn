@@ -5,7 +5,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 7.07107
 
-[node name="Area2D" type="Area2D"]
+[node name="Jar" type="Area2D"]
+position = Vector2( 249, 164 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
