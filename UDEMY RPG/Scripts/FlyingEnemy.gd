@@ -17,7 +17,7 @@ enum {
 }
 
 var knockback = Vector2.ZERO
-var health = 3
+var health = 3 - Global.skull_item
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, 140 * delta)
