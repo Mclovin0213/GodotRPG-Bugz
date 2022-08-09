@@ -87,4 +87,20 @@ polygon = PoolVector2Array( -63, -45, -63, -97, 161, -96, 160, -289, -351, -289,
 position = Vector2( -96.5, -55 )
 shape = SubResource( 2 )
 
+[node name="EnemyDown($)" type="Label" parent="."]
+margin_left = -285.0
+margin_top = -195.0
+margin_right = -245.0
+margin_bottom = -181.0
+text = "99"
+align = 1
+
+[node name="DamageUp($)" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="HealthUp($)" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
 [connection signal="body_entered" from="DoorHouse" to="." method="_on_DoorHouse_body_entered"]
