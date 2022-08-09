@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Sprites/Environment/House/House3.png" type="Texture" id=25]
 [ext_resource path="res://Sprites/Environment/House/House6.png" type="Texture" id=26]
 [ext_resource path="res://Scripts/House3.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/House4.gd" type="Script" id=28]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tiles_packed.png 0"
@@ -174,6 +175,12 @@ extents = Vector2( 7.66668, 7.33333 )
 
 [sub_resource type="CapsuleShape2D" id=19]
 radius = 6.66669
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 9.99999, 9.66667 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 21.6667, 6 )
 
 [sub_resource type="RectangleShape2D" id=15]
 
@@ -1157,12 +1164,25 @@ shape = SubResource( 19 )
 [node name="House4" type="StaticBody2D" parent="Enivironment/Other/Houses"]
 position = Vector2( 513, -461 )
 scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 28 )
 
 [node name="Sprite" type="Sprite" parent="Enivironment/Other/Houses/House4"]
 texture = ExtResource( 26 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Enivironment/Other/Houses/House4"]
 polygon = PoolVector2Array( -41, 69, -10, 66, -10, 48, 10, 48, 10, 67, 39, 70, 39, 52, 41, 28, -41, 28, -40, 52 )
+
+[node name="Door" type="Area2D" parent="Enivironment/Other/Houses/House4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enivironment/Other/Houses/House4/Door"]
+position = Vector2( 0, 57.6667 )
+shape = SubResource( 20 )
+
+[node name="SpawnPoint" type="Area2D" parent="Enivironment/Other/Houses/House4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enivironment/Other/Houses/House4/SpawnPoint"]
+position = Vector2( -1.66666, 72.6667 )
+shape = SubResource( 21 )
 
 [node name="Stairs" type="Area2D" parent="Enivironment/Other"]
 position = Vector2( 334, -7 )
@@ -1218,6 +1238,8 @@ __meta__ = {
 [connection signal="body_entered" from="Enivironment/Other/Houses/House/SpawnPoint" to="Enivironment/Other/Houses/House" method="_on_SpawnPoint_body_entered"]
 [connection signal="body_entered" from="Enivironment/Other/Houses/House3/Door" to="Enivironment/Other/Houses/House3" method="_on_Door_body_entered"]
 [connection signal="body_entered" from="Enivironment/Other/Houses/House3/SpawnPoint" to="Enivironment/Other/Houses/House3" method="_on_SpawnPoint_body_entered"]
+[connection signal="body_entered" from="Enivironment/Other/Houses/House4/Door" to="Enivironment/Other/Houses/House4" method="_on_Door_body_entered"]
+[connection signal="body_entered" from="Enivironment/Other/Houses/House4/SpawnPoint" to="Enivironment/Other/Houses/House4" method="_on_SpawnPoint_body_entered"]
 [connection signal="body_entered" from="Enivironment/Other/Stairs" to="Enivironment/Other/Stairs" method="_on_Stairs_body_entered"]
 [connection signal="body_entered" from="Enivironment/Other/SleazySlim/PlayerDetector" to="Enivironment/Other/SleazySlim" method="_on_PlayerDetector_body_entered"]
 [connection signal="body_exited" from="Enivironment/Other/SleazySlim/PlayerDetector" to="Enivironment/Other/SleazySlim" method="_on_PlayerDetector_body_exited"]
