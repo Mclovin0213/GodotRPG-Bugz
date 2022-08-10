@@ -312,27 +312,23 @@ __meta__ = {
 script = ExtResource( 18 )
 
 [node name="PlayerHead" type="Sprite" parent="GUI"]
-visible = false
 position = Vector2( 8, 8 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 17 )
 centered = false
 
 [node name="PlayerLives" type="Sprite" parent="GUI"]
-visible = false
 position = Vector2( 84, 42 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 hframes = 5
 
 [node name="CoinNumber" type="Sprite" parent="GUI"]
-visible = false
 position = Vector2( 984, 40 )
 scale = Vector2( 1.3, 1.3 )
 texture = ExtResource( 16 )
 
 [node name="CoinText" type="Label" parent="GUI"]
-visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -112.0

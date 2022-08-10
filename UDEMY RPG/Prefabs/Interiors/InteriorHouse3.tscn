@@ -131,7 +131,6 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "30"
 align = 1
-percent_visible = -0.5
 
 [node name="Heart" type="Node2D" parent="."]
 
