@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Sprites/Environment/TileSet/LPC_house_interior/interior.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Environment/stage-back.png" type="Texture" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://Scripts/InteriorHouse3.gd" type="Script" id=6]
 [ext_resource path="res://Fonts/ArcadeClassic.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Scripts/Skull.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Heart.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/SwordItem.gd" type="Script" id=10]
+[ext_resource path="res://Sprites/UI/B-button.png" type="Texture" id=11]
+[ext_resource path="res://Prefabs/Enemys/JumpEnemy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Sprites/UI/Coin-UI.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/UI/PlayerHead.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/GUI.gd" type="Script" id=15]
 
 [sub_resource type="TileSet" id=1]
 0/name = "interior.png 0"
@@ -62,6 +69,36 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource( 15 )
+
+[node name="PlayerHead" type="Sprite" parent="GUI"]
+position = Vector2( 8, 8 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+centered = false
+
+[node name="PlayerLives" type="Sprite" parent="GUI"]
+position = Vector2( 84, 42 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+hframes = 5
+
+[node name="CoinNumber" type="Sprite" parent="GUI"]
+position = Vector2( 984, 40 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 13 )
+
+[node name="CoinText" type="Label" parent="GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -112.0
+margin_top = 32.0
+margin_right = -72.0
+margin_bottom = 46.0
+text = "0"
+align = 2
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
@@ -109,7 +146,13 @@ custom_fonts/font = SubResource( 3 )
 text = "99"
 align = 1
 
+[node name="B_button" type="Sprite" parent="Skull"]
+position = Vector2( -265, -249 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 11 )
+
 [node name="Sword" type="Node2D" parent="."]
+script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="Sword"]
 position = Vector2( -96, -224 )
@@ -132,7 +175,13 @@ custom_fonts/font = SubResource( 3 )
 text = "30"
 align = 1
 
+[node name="B_button" type="Sprite" parent="Sword"]
+position = Vector2( -101, -254 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 11 )
+
 [node name="Heart" type="Node2D" parent="."]
+script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="Heart"]
 position = Vector2( 72, -224 )
@@ -157,5 +206,21 @@ custom_fonts/font = SubResource( 3 )
 text = "15"
 align = 1
 
+[node name="B_button" type="Sprite" parent="Heart"]
+position = Vector2( 72, -255 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 11 )
+
+[node name="JumpEnemy" parent="." instance=ExtResource( 12 )]
+position = Vector2( -32, -130 )
+
+[node name="JumpEnemy2" parent="." instance=ExtResource( 12 )]
+position = Vector2( -291, -122 )
+
 [connection signal="body_entered" from="DoorHouse" to="." method="_on_DoorHouse_body_entered"]
 [connection signal="body_entered" from="Skull/PlayerDetector" to="Skull" method="_on_PlayerDetector_body_entered"]
+[connection signal="body_exited" from="Skull/PlayerDetector" to="Skull" method="_on_PlayerDetector_body_exited"]
+[connection signal="body_entered" from="Sword/PlayerDetector" to="Sword" method="_on_PlayerDetector_body_entered"]
+[connection signal="body_exited" from="Sword/PlayerDetector" to="Sword" method="_on_PlayerDetector_body_exited"]
+[connection signal="body_entered" from="Heart/PlayerDetector" to="Heart" method="_on_PlayerDetector_body_entered"]
+[connection signal="body_exited" from="Heart/PlayerDetector" to="Heart" method="_on_PlayerDetector_body_exited"]

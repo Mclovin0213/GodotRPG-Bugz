@@ -9,15 +9,15 @@ func _input(event):
 	if get_node_or_null("DialogNode") == null:
 		if Input.is_action_just_pressed("ui_dialog") && active:
 			get_tree().paused = true
-			var dialog = Dialogic.start("Skull")
+			var dialog = Dialogic.start("Sword")
 			dialog.pause_mode = Node.PAUSE_MODE_PROCESS
 			dialog.connect("timeline_end", self, "unpause")
-			dialog.connect("dialogic_signal", self, "skull_effect")
+			dialog.connect("dialogic_signal", self, "sword_effect")
 			add_child(dialog)
 
-func skull_effect(argument):
-	if argument == "yes":
-		Global.skull_item = 1
+func sword_effect(argument):
+	if argument == "sword1":
+		print("fire")
 
 func unpause(timeline_name):
 	get_tree().paused = false
