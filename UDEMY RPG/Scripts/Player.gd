@@ -12,7 +12,7 @@ onready var anim_state = anim_tree.get("parameters/playback")
 onready var sword_hitbox = $Sword
 var sword_vector = Vector2.ZERO
 
-var speed = 100
+var speed = 500
 var velocity = Vector2.ZERO
 
 var health = 4

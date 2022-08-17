@@ -65,12 +65,12 @@ __meta__ = {
 polygon = PoolVector2Array( -200, 12, -192, 12, -193, -56, -288, -56, -288, -70, -257, -69, -255, -127, -225, -129, -225, -160, -64, -159, -64, -32, -128, -30, -128, 13, -121, 12, -120, -23, -26, -19, -26, -172, -295, -172, -295, -25, -201, -25 )
 
 [node name="spawnPoint" type="Position2D" parent="."]
-position = Vector2( -159, -26 )
+position = Vector2( -160, -33 )
 
 [node name="doorHouse" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="doorHouse"]
-position = Vector2( -159.5, 3 )
+position = Vector2( -160, 16 )
 shape = SubResource( 2 )
 
 [node name="Table" type="StaticBody2D" parent="."]
