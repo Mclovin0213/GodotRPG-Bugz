@@ -16,8 +16,9 @@ func _input(event):
 			add_child(dialog)
 
 func skull_effect(argument):
-	if argument == "yes":
-		Global.skull_item = 1
+	if argument == 0:
+		Global.player_damage += 1
+		
 
 func unpause(timeline_name):
 	get_tree().paused = false

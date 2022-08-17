@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var gui = get_node("../GUI")
+
 var active = false
 
 func _process(delta):
@@ -17,7 +19,7 @@ func _input(event):
 
 func heart_effect(argument):
 	if argument == "heart1":
-		Global.player_lives += 1
+		Global.player_lives = 10
 
 func unpause(timeline_name):
 	get_tree().paused = false

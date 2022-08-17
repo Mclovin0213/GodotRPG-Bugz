@@ -17,7 +17,7 @@ func _input(event):
 
 func sword_effect(argument):
 	if argument == "sword1":
-		print("fire")
+		Global.player_damage = 2
 
 func unpause(timeline_name):
 	get_tree().paused = false

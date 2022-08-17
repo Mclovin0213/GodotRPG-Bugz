@@ -4,11 +4,7 @@ const HEART_ROW_SIZE = 8
 const HEART_OFFSET = 16
 
 func _ready():
-	for i in Global.player_lives:
-		var new_heart = Sprite.new()
-		new_heart.texture = $PlayerLives.texture
-		new_heart.hframes = $PlayerLives.hframes
-		$PlayerLives.add_child(new_heart)
+	lives_check()
 
 func _process(delta):
 	$CoinText.text = String(Global.coin_number)
@@ -27,4 +23,12 @@ func _process(delta):
 		if index < last_heart:
 			heart.frame = 4
 			
-	
+func lives_check():
+	for i in Global.player_lives:
+		var new_heart = Sprite.new()
+		new_heart.texture = $PlayerLives.texture
+		new_heart.hframes = $PlayerLives.hframes
+		$PlayerLives.add_child(new_heart)
+
+func reload_scene():
+	queue_free()

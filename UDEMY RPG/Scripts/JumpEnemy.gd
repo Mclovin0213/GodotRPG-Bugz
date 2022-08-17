@@ -40,7 +40,7 @@ func _physics_process(delta):
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Sword"):
-		health -= 1
+		health -= Global.player_damage
 		knockback = area.knockback_vector * 120
 		yield(get_tree().create_timer(0.7), "timeout")
 		if health <= 0:

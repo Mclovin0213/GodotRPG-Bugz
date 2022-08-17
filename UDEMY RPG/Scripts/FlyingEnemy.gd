@@ -17,7 +17,7 @@ enum {
 }
 
 var knockback = Vector2.ZERO
-var health = 3 - Global.skull_item
+var health = 3
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, 140 * delta)
@@ -47,7 +47,7 @@ func player_detectable():
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Sword"):
-		health -= 1
+		health -= Global.player_damage
 		knockback = area.knockback_vector * 120
 		yield(get_tree().create_timer(0.7), "timeout")
 		if health <= 0:

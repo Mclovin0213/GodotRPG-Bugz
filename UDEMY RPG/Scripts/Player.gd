@@ -15,7 +15,7 @@ var sword_vector = Vector2.ZERO
 var speed = 100
 var velocity = Vector2.ZERO
 
-var health = Global.player_lives
+var health = 4
 
 func _ready():
 	sword_hitbox.knockback_vector = sword_vector

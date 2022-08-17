@@ -11,7 +11,7 @@
 
 			],
 			"portrait": "",
-			"question": "Skull: -1 Health for all enemies"
+			"question": "Skull: Weaker Enemies"
 		},
 		{
 			"choice": "Cancel",
@@ -28,7 +28,7 @@
 			"value": ""
 		},
 		{
-			"emit_signal": "yes",
+			"emit_signal": "0",
 			"event_id": "dialogic_040"
 		},
 		{

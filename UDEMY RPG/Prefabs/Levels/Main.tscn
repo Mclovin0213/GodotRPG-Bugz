@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=2]
@@ -14,10 +14,7 @@
 [ext_resource path="res://Prefabs/Enemys/FlyingBug.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Prefabs/Enemys/JumpEnemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Prefabs/Nature/Tree_2.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Sprites/UI/HeartSpriteSheetl.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/UI/Coin-UI.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/UI/PlayerHead.png" type="Texture" id=17]
-[ext_resource path="res://Scripts/GUI.gd" type="Script" id=18]
+[ext_resource path="res://Prefabs/GUI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Sprites/NPC/OzzySpriteSheet.png" type="Texture" id=19]
 [ext_resource path="res://Scripts/SleazySlim.gd" type="Script" id=20]
 [ext_resource path="res://Sprites/UI/B-button.png" type="Texture" id=21]
@@ -227,7 +224,7 @@ tracks/0/keys = {
 script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 119, -403 )
+position = Vector2( -406, -416 )
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -308,35 +305,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="GUI" type="CanvasLayer" parent="."]
-script = ExtResource( 18 )
-
-[node name="PlayerHead" type="Sprite" parent="GUI"]
-position = Vector2( 8, 8 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 17 )
-centered = false
-
-[node name="PlayerLives" type="Sprite" parent="GUI"]
-position = Vector2( 84, 42 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 15 )
-hframes = 5
-
-[node name="CoinNumber" type="Sprite" parent="GUI"]
-position = Vector2( 984, 40 )
-scale = Vector2( 1.3, 1.3 )
-texture = ExtResource( 16 )
-
-[node name="CoinText" type="Label" parent="GUI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -112.0
-margin_top = 32.0
-margin_right = -72.0
-margin_bottom = 46.0
-text = "0"
-align = 2
+[node name="GUI" parent="." instance=ExtResource( 15 )]
 
 [node name="Enivironment" type="YSort" parent="."]
 
