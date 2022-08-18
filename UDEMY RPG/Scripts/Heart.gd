@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var gui = get_node("../GUI")
-
 var active = false
+var item_bought = false
+
 
 func _process(delta):
 	$B_button.visible = active
@@ -13,16 +13,23 @@ func _input(event):
 			get_tree().paused = true
 			var dialog = Dialogic.start("Heart")
 			dialog.pause_mode = Node.PAUSE_MODE_PROCESS
+			Dialogic.set_variable("coin", Global.coin_number)
 			dialog.connect("timeline_end", self, "unpause")
 			dialog.connect("dialogic_signal", self, "heart_effect")
 			add_child(dialog)
 
-func heart_effect(argument):
-	if argument == "heart1":
-		Global.player_lives = 10
+func heart_effect(string):
+	match string:
+		"heart1":
+			Global.player_lives = 10
+			get_parent().reset_gui()
+			item_bought = true
+			queue_free()
 
 func unpause(timeline_name):
 	get_tree().paused = false
+	if item_bought:
+		Global.coin_number -= 15
 
 func _on_PlayerDetector_body_entered(body):
 	if body.name == "Player":

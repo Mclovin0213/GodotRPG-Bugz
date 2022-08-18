@@ -12,10 +12,8 @@ onready var anim_state = anim_tree.get("parameters/playback")
 onready var sword_hitbox = $Sword
 var sword_vector = Vector2.ZERO
 
-var speed = 500
+var speed = 100
 var velocity = Vector2.ZERO
-
-var health = 4
 
 func _ready():
 	sword_hitbox.knockback_vector = sword_vector
@@ -57,10 +55,9 @@ func Sword_state():
 func Sword_finished():
 	state = MOVE
 
-
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Enemy"):
 		Global.player_lives -= 0.25
 		if Global.player_lives <= 0:
 			get_tree().reload_current_scene()
-			Global.player_lives = 4
+			Global.player_lives = 5

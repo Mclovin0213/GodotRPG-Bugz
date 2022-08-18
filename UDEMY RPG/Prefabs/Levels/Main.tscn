@@ -11,8 +11,7 @@
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://Prefabs/Items/Coin.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/Nature/Grass.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Prefabs/Enemys/FlyingBug.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Prefabs/Enemys/JumpEnemy.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Prefabs/Enemys/BombEnemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Prefabs/Nature/Tree_2.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Prefabs/GUI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Sprites/NPC/OzzySpriteSheet.png" type="Texture" id=19]
@@ -226,11 +225,14 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 10.999, 616.5 )
+
 [node name="Main" type="YSort"]
 script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -406, -416 )
+position = Vector2( 250, -87 )
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -1052,10 +1054,8 @@ position = Vector2( -293, -347 )
 
 [node name="Enemies" type="YSort" parent="Enivironment"]
 
-[node name="FlyingBug" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
-
-[node name="JumpEnemy" parent="Enivironment/Enemies" instance=ExtResource( 13 )]
-position = Vector2( 361, -66 )
+[node name="BombEnemy" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( 355, -87 )
 
 [node name="Other" type="YSort" parent="Enivironment"]
 
@@ -1211,14 +1211,25 @@ anims/RESET = SubResource( 14 )
 position = Vector2( 0, -17 )
 texture = ExtResource( 21 )
 
-[node name="TileMap" type="TileMap" parent="."]
-z_index = -2
-tile_set = SubResource( 1 )
-cell_size = Vector2( 16, 16 )
-format = 1
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="WaterCol" type="StaticBody2D" parent="Enivironment/Other"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
+position = Vector2( 762, -191 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
+position = Vector2( -491, -194 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
+position = Vector2( 135.5, -492 )
+rotation = 1.57079
+shape = SubResource( 24 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
+position = Vector2( 139, 105 )
+rotation = 1.57079
+shape = SubResource( 24 )
 
 [connection signal="body_entered" from="Enivironment/Other/Houses/House/Door" to="Enivironment/Other/Houses/House" method="_on_Door_body_entered"]
 [connection signal="body_entered" from="Enivironment/Other/Houses/House/SpawnPoint" to="Enivironment/Other/Houses/House" method="_on_SpawnPoint_body_entered"]

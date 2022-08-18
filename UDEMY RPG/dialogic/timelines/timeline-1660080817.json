@@ -22,10 +22,10 @@
 		},
 		{
 			"choice": "Spend 15 coins",
-			"condition": "",
-			"definition": "",
+			"condition": ">=",
+			"definition": "1660782328-787",
 			"event_id": "dialogic_011",
-			"value": ""
+			"value": "15"
 		},
 		{
 			"emit_signal": "heart1",

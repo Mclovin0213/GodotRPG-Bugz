@@ -11,14 +11,16 @@ func _input(event):
 			get_tree().paused = true
 			var dialog = Dialogic.start("Skull")
 			dialog.pause_mode = Node.PAUSE_MODE_PROCESS
+			Dialogic.set_variable("coin", Global.coin_number)
 			dialog.connect("timeline_end", self, "unpause")
 			dialog.connect("dialogic_signal", self, "skull_effect")
 			add_child(dialog)
 
-func skull_effect(argument):
-	if argument == 0:
-		Global.player_damage += 1
-		
+func skull_effect(string):
+	match string:
+		"skull1":
+			Global.player_damage += 1
+			queue_free()
 
 func unpause(timeline_name):
 	get_tree().paused = false

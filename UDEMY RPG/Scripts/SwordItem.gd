@@ -11,13 +11,17 @@ func _input(event):
 			get_tree().paused = true
 			var dialog = Dialogic.start("Sword")
 			dialog.pause_mode = Node.PAUSE_MODE_PROCESS
+			Dialogic.set_variable("coin", Global.coin_number)
 			dialog.connect("timeline_end", self, "unpause")
 			dialog.connect("dialogic_signal", self, "sword_effect")
 			add_child(dialog)
 
-func sword_effect(argument):
-	if argument == "sword1":
-		Global.player_damage = 2
+func sword_effect(string):
+	match string:
+		"sword1":
+			Global.player_damage = 2
+			
+			queue_free()
 
 func unpause(timeline_name):
 	get_tree().paused = false

@@ -22,13 +22,13 @@
 		},
 		{
 			"choice": "Spend 99 coins",
-			"condition": "",
-			"definition": "",
+			"condition": ">=",
+			"definition": "1660782328-787",
 			"event_id": "dialogic_011",
-			"value": ""
+			"value": "99"
 		},
 		{
-			"emit_signal": "0",
+			"emit_signal": "skull1",
 			"event_id": "dialogic_040"
 		},
 		{

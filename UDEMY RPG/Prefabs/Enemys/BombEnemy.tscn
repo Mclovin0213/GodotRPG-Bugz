@@ -71,28 +71,25 @@ texture = ExtResource( 1 )
 hframes = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/Explode = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
 [node name="hitbox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource( 5 )
 
 [node name="hurtbox" type="Area2D" parent="." groups=["Enemy"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource( 6 )
 
 [node name="playerDetector" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
 shape = SubResource( 7 )
