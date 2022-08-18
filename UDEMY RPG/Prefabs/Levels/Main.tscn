@@ -11,7 +11,7 @@
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://Prefabs/Items/Coin.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/Nature/Grass.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Prefabs/Enemys/BombEnemy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Prefabs/Enemys/JumpEnemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Prefabs/Nature/Tree_2.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Prefabs/GUI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Sprites/NPC/OzzySpriteSheet.png" type="Texture" id=19]
@@ -1054,8 +1054,8 @@ position = Vector2( -293, -347 )
 
 [node name="Enemies" type="YSort" parent="Enivironment"]
 
-[node name="BombEnemy" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 355, -87 )
+[node name="JumpEnemy" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( 458, -21 )
 
 [node name="Other" type="YSort" parent="Enivironment"]
 
