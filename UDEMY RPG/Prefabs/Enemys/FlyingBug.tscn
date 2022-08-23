@@ -45,7 +45,7 @@ tracks/0/keys = {
 radius = 14.2857
 
 [sub_resource type="CircleShape2D" id=10]
-radius = 142.864
+radius = 93.0328
 
 [node name="FlyingBug" type="KinematicBody2D"]
 position = Vector2( 401, 88 )
