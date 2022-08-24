@@ -12,7 +12,7 @@ onready var anim_state = anim_tree.get("parameters/playback")
 onready var sword_hitbox = $Sword
 var sword_vector = Vector2.ZERO
 
-var speed = 100
+export var speed = 100
 var velocity = Vector2.ZERO
 
 func _ready():
@@ -55,8 +55,14 @@ func Sword_state():
 func Sword_finished():
 	state = MOVE
 
+func flash():
+	$Sprite.material.set_shader_param("flash_modifier", 1)
+	yield(get_tree().create_timer(0.2), "timeout")
+	$Sprite.material.set_shader_param("flash_modifier", 0)
+
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Enemy"):
+		flash()
 		Global.player_lives -= 0.25
 		if Global.player_lives <= 0:
 			get_tree().reload_current_scene()

@@ -8,6 +8,7 @@ func _ready():
 
 func _process(delta):
 	$CoinText.text = String(Global.coin_number)
+	$KeyNum.text = String(Global.keys)
 	
 	for heart in $PlayerLives.get_children():
 		var index = heart.get_index()

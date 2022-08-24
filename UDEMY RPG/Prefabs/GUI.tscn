@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/UI/Coin-UI.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/UI/HeartSpriteSheetl.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/UI/PlayerHead.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Interactables/keys.png" type="Texture" id=5]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -31,6 +32,21 @@ anchor_right = 1.0
 margin_left = -112.0
 margin_top = 32.0
 margin_right = -72.0
+margin_bottom = 46.0
+text = "0"
+align = 2
+
+[node name="Key" type="Sprite" parent="."]
+position = Vector2( 886, 39 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+
+[node name="KeyNum" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -198.0
+margin_top = 32.0
+margin_right = -158.0
 margin_bottom = 46.0
 text = "0"
 align = 2

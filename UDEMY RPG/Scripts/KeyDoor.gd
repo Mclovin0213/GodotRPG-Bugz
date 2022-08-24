@@ -7,6 +7,7 @@ func _process(delta):
 	
 func _input(event):
 	if Input.is_action_just_pressed("ui_dialog") && active:
+		Global.keys -= 1
 		$anim.play("Trigger")
 		yield(get_node("anim"), "animation_finished")
 		$anim.play("Open")

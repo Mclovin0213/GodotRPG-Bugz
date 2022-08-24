@@ -47,6 +47,7 @@ func player_detectable():
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Sword"):
+		flash()
 		health -= Global.player_damage
 		knockback = area.knockback_vector * 120
 		yield(get_tree().create_timer(0.7), "timeout")
@@ -56,6 +57,10 @@ func _on_hitbox_area_entered(area):
 			death.global_position = $hitbox.global_position
 			queue_free()
 
+func flash():
+	$Sprite.material.set_shader_param("flash_modifier", 1)
+	yield(get_tree().create_timer(0.2), "timeout")
+	$Sprite.material.set_shader_param("flash_modifier", 0)
 
 func _on_playerDetector_body_entered(body):
 	if body.name == "Player":

@@ -1,26 +1,24 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://Sprites/Environment/TileSet/Pink_dungeon_sheet.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/Interactables/dungeon-door.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Interactables/Lever.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Switch.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/bossDoor.gd" type="Script" id=5]
-[ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Dungeon.gd" type="Script" id=6]
 [ext_resource path="res://Sounds/1.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sprites/Interactables/Chest.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/Chest.gd" type="Script" id=9]
-[ext_resource path="res://Sprites/Interactables/keys.png" type="Texture" id=10]
+[ext_resource path="res://Prefabs/GUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Sprites/Environment/Doors/door_spritesheet.png" type="Texture" id=11]
-[ext_resource path="res://Scripts/DungeonGui.gd" type="Script" id=12]
-[ext_resource path="res://Sprites/UI/HeartSpriteSheetl.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/UI/Coin-UI.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/UI/PlayerHead.png" type="Texture" id=15]
 [ext_resource path="res://Scripts/KeyDoor.gd" type="Script" id=16]
 [ext_resource path="res://Sprites/UI/B-button.png" type="Texture" id=17]
 [ext_resource path="res://Prefabs/Enemys/FlyingBug.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scripts/DefeatAllEnemy.gd" type="Script" id=19]
 [ext_resource path="res://Scripts/EnemyDoor.gd" type="Script" id=20]
 [ext_resource path="res://Scripts/PlayerEntered.gd" type="Script" id=21]
+[ext_resource path="res://Sprites/Hazards/MovingSpikes.png" type="Texture" id=22]
+[ext_resource path="res://Scripts/MovingSpike.gd" type="Script" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -690,6 +688,293 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="RectangleShape2D" id=65]
+extents = Vector2( 15.5, 12.5 )
+
+[sub_resource type="RectangleShape2D" id=66]
+extents = Vector2( 17, 13.5 )
+
+[sub_resource type="Animation" id=67]
+resource_name = "Close"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "Open"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 13 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=69]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=70]
+resource_name = "Trigger"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "Close"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "Open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+
+[sub_resource type="Animation" id=73]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
 [sub_resource type="CircleShape2D" id=52]
 radius = 5.0
 
@@ -894,297 +1179,20 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="RectangleShape2D" id=65]
-extents = Vector2( 15.5, 12.5 )
-
-[sub_resource type="RectangleShape2D" id=66]
-extents = Vector2( 17, 13.5 )
-
-[sub_resource type="Animation" id=67]
-resource_name = "Close"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, false ]
-}
-
-[sub_resource type="Animation" id=68]
-resource_name = "Open"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 13 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
-}
-
-[sub_resource type="Animation" id=69]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=70]
-resource_name = "Trigger"
-length = 1.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8, 0.9, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, false, true, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("KeyDetector/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
-}
-
 [sub_resource type="RectangleShape2D" id=74]
 extents = Vector2( 37, 10 )
 
-[sub_resource type="Animation" id=71]
-resource_name = "Close"
-length = 0.1
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:z_index")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 0 ]
-}
+[sub_resource type="RectangleShape2D" id=75]
+extents = Vector2( 11, 13 )
 
-[sub_resource type="Animation" id=72]
-resource_name = "Open"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:z_index")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 1 ]
-}
+[sub_resource type="RectangleShape2D" id=76]
+extents = Vector2( 8.2237, 8.4375 )
 
-[sub_resource type="Animation" id=73]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:z_index")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 14.5, 8 )
 
 [node name="Dungeon" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="Tilemaps" type="YSort" parent="."]
 
@@ -1209,7 +1217,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 32
 collision_mask = 5
 format = 1
-tile_data = PoolIntArray( -1310713, 2, 3, -1310712, 2, 65541, -1310711, 2, 65541, -1310710, 2, 65541, -1310709, 2, 65541, -1310708, 2, 65541, -1310707, 2, 65541, -1310706, 2, 65541, -1310705, 2, 65541, -1310704, 2, 65541, -1310703, 2, 65541, -1310702, 2, 65541, -1310701, 2, 65541, -1310700, 2, 65541, -1310699, 2, 65541, -1310698, 2, 65541, -1310697, 2, 65541, -1310696, 2, 65541, -1310695, 2, 4, -1245177, 2, 131076, -1245159, 2, 196611, -1179641, 2, 131076, -1179623, 2, 196611, -1114105, 2, 131076, -1114087, 2, 196611, -1048569, 2, 131076, -1048551, 2, 196611, -983033, 2, 131076, -983015, 2, 196611, -917497, 2, 131076, -917479, 2, 196611, -851961, 2, 131076, -851943, 2, 196611, -786425, 2, 131076, -786407, 2, 196611, -720889, 2, 131076, -720871, 2, 196611, -655353, 2, 131076, -655335, 2, 196611, -589817, 2, 65539, -589816, 2, 131077, -589815, 2, 131077, -589814, 2, 131077, -589813, 2, 131077, -589812, 2, 131077, -589811, 2, 131077, -589810, 2, 131077, -589809, 2, 131077, -589808, 2, 131077, -589807, 2, 131077, -589806, 2, 2, -589803, 2, 0, -589802, 2, 131077, -589801, 2, 131077, -589800, 2, 131077, -589799, 2, 65540, -524270, 2, 65538, -524267, 2, 65536, -458734, 2, 65538, -458731, 2, 65536, -393200, 2, 3, -393199, 2, 65541, -393198, 2, 65541, -393195, 2, 65541, -393194, 2, 65541, -393193, 2, 65541, -393192, 2, 65541, -393191, 2, 65541, -393190, 2, 4, -327664, 2, 131076, -327654, 2, 196611, -262128, 2, 131076, -262118, 2, 196611, -196592, 2, 131076, -196582, 2, 196611, -131056, 2, 131076, -131046, 2, 196611, -65520, 2, 65539, -65519, 2, 131077, -65518, 2, 131077, -65517, 2, 131077, -65516, 2, 131077, -65515, 2, 131077, -65514, 2, 131077, -65513, 2, 2, -65510, 2, 196611, 23, 2, 131076, 26, 2, 196611, 65556, 2, 3, 65557, 2, 196609, 65558, 2, 196609, 65559, 2, 196609, 65562, 2, 196610, 65563, 2, 196609, 65564, 2, 4, 131081, 2, 3, 131082, 2, 196609, 131083, 2, 196609, 131084, 2, 196609, 131085, 2, 196609, 131086, 2, 196609, 131087, 2, 196609, 131088, 2, 4, 131092, 2, 458752, 131100, 2, 327681, 196617, 2, 327680, 196624, 2, 327681, 196628, 2, 458752, 196636, 2, 327681, 262153, 2, 327680, 262160, 2, 327681, 262164, 2, 458752, 262172, 2, 327681, 327689, 2, 327680, 327696, 2, 327681, 327700, 2, 458752, 327708, 2, 327681, 393218, 2, 3, 393219, 2, 196608, 393220, 2, 196608, 393221, 2, 196608, 393222, 2, 196608, 393223, 2, 196608, 393224, 2, 196608, 393225, 2, 131074, 393230, 1, 4, 393232, 2, 131072, 393233, 2, 196608, 393234, 2, 196608, 393235, 2, 196608, 393236, 2, 131074, 393239, 1, 0, 393240, 1, 2, 393241, 1, 65537, 393244, 2, 327681, 458754, 2, 393216, 458762, 1, 4, 458766, 1, 196612, 458777, 1, 196612, 458780, 2, 327681, 524290, 2, 393216, 524298, 1, 131076, 524316, 2, 327681, 589826, 2, 393216, 589834, 1, 65540, 589852, 2, 327681, 655362, 2, 393216, 655370, 1, 196612, 655383, 1, 0, 655384, 1, 1, 655385, 1, 3, 655388, 2, 327681, 720898, 2, 393216, 720912, 2, 0, 720913, 2, 327683, 720914, 2, 327683, 720915, 2, 327683, 720916, 2, 2, 720924, 2, 327681, 786434, 2, 393216, 786438, 1, 0, 786439, 1, 1, 786440, 1, 3, 786444, 1, 65536, 786445, 1, 2, 786446, 1, 3, 786448, 2, 458753, 786452, 2, 393216, 786460, 2, 327681, 851970, 2, 393216, 851980, 1, 131076, 851984, 2, 458753, 851988, 2, 393216, 851996, 2, 327681, 917506, 2, 393216, 917516, 1, 196612, 917520, 2, 458753, 917524, 2, 65539, 917525, 2, 327684, 917526, 2, 327684, 917527, 2, 327684, 917528, 2, 327684, 917529, 2, 327684, 917530, 2, 327684, 917531, 2, 327684, 917532, 2, 65540, 983042, 2, 393216, 983056, 2, 458753, 1048578, 2, 65539, 1048579, 2, 327682, 1048580, 2, 327682, 1048581, 2, 327682, 1048582, 2, 327682, 1048583, 2, 2, 1048588, 2, 0, 1048589, 2, 327682, 1048590, 2, 327682, 1048591, 2, 327682, 1048592, 2, 65540, 1114119, 2, 393216, 1114124, 2, 393217 )
+tile_data = PoolIntArray( -1310713, 2, 3, -1310712, 2, 65541, -1310711, 2, 65541, -1310710, 2, 65541, -1310709, 2, 65541, -1310708, 2, 65541, -1310707, 2, 65541, -1310706, 2, 65541, -1310705, 2, 65541, -1310704, 2, 65541, -1310703, 2, 65541, -1310702, 2, 65541, -1310701, 2, 65541, -1310700, 2, 65541, -1310699, 2, 65541, -1310698, 2, 65541, -1310697, 2, 65541, -1310696, 2, 65541, -1310695, 2, 4, -1245177, 2, 131076, -1245159, 2, 196611, -1179641, 2, 131076, -1179623, 2, 196611, -1114105, 2, 131076, -1114087, 2, 196611, -1048569, 2, 131076, -1048551, 2, 196611, -983033, 2, 131076, -983015, 2, 196611, -917497, 2, 131076, -917479, 2, 196611, -851961, 2, 131076, -851943, 2, 196611, -786425, 2, 131076, -786407, 2, 196611, -720889, 2, 131076, -720871, 2, 196611, -655353, 2, 131076, -655335, 2, 196611, -589817, 2, 65539, -589816, 2, 131077, -589815, 2, 131077, -589814, 2, 131077, -589813, 2, 131077, -589812, 2, 131077, -589811, 2, 131077, -589810, 2, 131077, -589809, 2, 131077, -589808, 2, 131077, -589807, 2, 131077, -589806, 2, 2, -589803, 2, 0, -589802, 2, 131077, -589801, 2, 131077, -589800, 2, 131077, -589799, 2, 65540, -524270, 2, 65538, -524267, 2, 65536, -458734, 2, 65538, -458731, 2, 65536, -393200, 2, 3, -393199, 2, 65541, -393198, 2, 65541, -393195, 2, 65541, -393194, 2, 65541, -393193, 2, 65541, -393192, 2, 65541, -393191, 2, 65541, -393190, 2, 4, -327664, 2, 131076, -327654, 2, 196611, -262128, 2, 131076, -262118, 2, 196611, -196592, 2, 131076, -196582, 2, 196611, -131056, 2, 131076, -131046, 2, 196611, -65520, 2, 65539, -65519, 2, 131077, -65518, 2, 131077, -65517, 2, 131077, -65516, 2, 131077, -65515, 2, 131077, -65514, 2, 131077, -65513, 2, 2, -65510, 2, 196611, 23, 2, 131076, 26, 2, 196611, 65556, 2, 3, 65557, 2, 196609, 65558, 2, 196609, 65559, 2, 196609, 65562, 2, 196610, 65563, 2, 196609, 65564, 2, 4, 131081, 2, 3, 131082, 2, 196609, 131083, 2, 196609, 131084, 2, 196609, 131085, 2, 196609, 131086, 2, 196609, 131087, 2, 196609, 131088, 2, 4, 131092, 2, 458752, 131100, 2, 327681, 196617, 2, 327680, 196624, 2, 327681, 196628, 2, 458752, 196636, 2, 327681, 262153, 2, 327680, 262160, 2, 327681, 262164, 2, 458752, 262172, 2, 327681, 327689, 2, 327680, 327696, 2, 327681, 327700, 2, 458752, 327708, 2, 327681, 393218, 2, 3, 393219, 2, 196608, 393220, 2, 196608, 393221, 2, 196608, 393222, 2, 196608, 393223, 2, 196608, 393224, 2, 196608, 393225, 2, 131074, 393230, 1, 4, 393232, 2, 131072, 393233, 2, 196608, 393234, 2, 196608, 393235, 2, 196608, 393236, 2, 131074, 393239, 1, 0, 393240, 1, 2, 393241, 1, 65537, 393244, 2, 327681, 458754, 2, 393216, 458762, 1, 4, 458766, 1, 196612, 458777, 1, 196612, 458780, 2, 327681, 524290, 2, 393216, 524298, 1, 131076, 524316, 2, 327681, 589826, 2, 393216, 589834, 1, 65540, 589852, 2, 327681, 655362, 2, 393216, 655370, 1, 196612, 655383, 1, 0, 655384, 1, 1, 655385, 1, 3, 655388, 2, 327681, 720898, 2, 393216, 720912, 2, 0, 720913, 2, 327683, 720914, 2, 327683, 720915, 2, 327683, 720916, 2, 2, 720924, 2, 327681, 786434, 2, 393216, 786438, 1, 0, 786439, 1, 1, 786440, 1, 3, 786444, 1, 65536, 786445, 1, 2, 786446, 1, 3, 786448, 2, 458753, 786452, 2, 393216, 786460, 2, 327681, 851970, 2, 393216, 851980, 1, 131076, 851984, 2, 458753, 851988, 2, 393216, 851996, 2, 327681, 917506, 2, 393216, 917516, 1, 196612, 917520, 2, 458753, 917524, 2, 65539, 917525, 2, 327684, 917526, 2, 327684, 917527, 2, 327684, 917528, 2, 327684, 917529, 2, 327684, 917530, 2, 327684, 917531, 2, 327684, 917532, 2, 65540, 983042, 2, 393216, 983056, 2, 458753, 1048578, 2, 65539, 1048579, 2, 327682, 1048580, 2, 327682, 1048582, 2, 327682, 1048583, 2, 2, 1048588, 2, 0, 1048589, 2, 327682, 1048590, 2, 327682, 1048591, 2, 327682, 1048592, 2, 65540, 1114119, 2, 393216, 1114124, 2, 393217 )
 
 [node name="door" type="TileMap" parent="Tilemaps"]
 scale = Vector2( 2, 2 )
@@ -1221,226 +1229,220 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="GUI" parent="." instance=ExtResource( 10 )]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 zoom = Vector2( 0.48, 0.48 )
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
-position = Vector2( 178, 504 )
+position = Vector2( 177, 496 )
 
-[node name="bossDoor" type="StaticBody2D" parent="."]
+[node name="Environment" type="YSort" parent="."]
+
+[node name="Doors" type="YSort" parent="Environment"]
+
+[node name="bossDoor" type="StaticBody2D" parent="Environment/Doors"]
 position = Vector2( 800, 48 )
 scale = Vector2( 2, 2 )
 collision_layer = 8
 script = ExtResource( 5 )
 
-[node name="Sprite" type="Sprite" parent="bossDoor"]
+[node name="Sprite" type="Sprite" parent="Environment/Doors/bossDoor"]
 position = Vector2( 1.52588e-05, -8 )
 texture = ExtResource( 2 )
 hframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bossDoor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Doors/bossDoor"]
 position = Vector2( 0.333389, -2.66667 )
 shape = SubResource( 51 )
 
-[node name="anim" type="AnimationPlayer" parent="bossDoor"]
+[node name="anim" type="AnimationPlayer" parent="Environment/Doors/bossDoor"]
 anims/Close = SubResource( 57 )
 anims/Open = SubResource( 58 )
 anims/RESET = SubResource( 59 )
 
-[node name="audio" type="AudioStreamPlayer" parent="bossDoor"]
+[node name="audio" type="AudioStreamPlayer" parent="Environment/Doors/bossDoor"]
 stream = ExtResource( 7 )
 volume_db = -6.0
 
-[node name="Switch" type="Area2D" parent="."]
-position = Vector2( 298, 304 )
-collision_layer = 8
-collision_mask = 16
-script = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Switch"]
-position = Vector2( 0, -4 )
-shape = SubResource( 52 )
-
-[node name="Sprite" type="Sprite" parent="Switch"]
-texture = ExtResource( 3 )
-hframes = 4
-vframes = 6
-
-[node name="anim" type="AnimationPlayer" parent="Switch"]
-autoplay = "Closed"
-anims/Closed = SubResource( 53 )
-anims/Opened = SubResource( 54 )
-anims/RESET = SubResource( 55 )
-anims/Triggered = SubResource( 56 )
-
-[node name="Chest" type="StaticBody2D" parent="."]
-position = Vector2( 373, 155 )
-script = ExtResource( 9 )
-
-[node name="Sprite" type="Sprite" parent="Chest"]
-position = Vector2( 0, -8 )
-texture = ExtResource( 8 )
-hframes = 2
-vframes = 4
-frame = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest"]
-position = Vector2( 0, -8 )
-shape = SubResource( 60 )
-
-[node name="Area2D" type="Area2D" parent="Chest"]
-position = Vector2( 0, -8 )
-collision_layer = 8
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chest/Area2D"]
-shape = SubResource( 61 )
-disabled = true
-
-[node name="anim" type="AnimationPlayer" parent="Chest"]
-autoplay = "Close"
-anims/Close = SubResource( 62 )
-anims/Open = SubResource( 63 )
-anims/RESET = SubResource( 64 )
-
-[node name="spawnPoint" type="Position2D" parent="Chest"]
-position = Vector2( 23, 18 )
-
-[node name="audio" type="AudioStreamPlayer" parent="Chest"]
-stream = ExtResource( 7 )
-
-[node name="KeyDoor" type="StaticBody2D" parent="."]
+[node name="KeyDoor" type="StaticBody2D" parent="Environment/Doors"]
 position = Vector2( 640, -178 )
 scale = Vector2( 2.3, 2.3 )
 script = ExtResource( 16 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyDoor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Doors/KeyDoor"]
 position = Vector2( -0.5, -5.5 )
 shape = SubResource( 65 )
 
-[node name="Sprite" type="Sprite" parent="KeyDoor"]
+[node name="Sprite" type="Sprite" parent="Environment/Doors/KeyDoor"]
 position = Vector2( 0, -8 )
 texture = ExtResource( 11 )
 hframes = 14
 
-[node name="KeyDetector" type="Area2D" parent="KeyDoor"]
+[node name="KeyDetector" type="Area2D" parent="Environment/Doors/KeyDoor"]
 position = Vector2( 0, -8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyDoor/KeyDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Doors/KeyDoor/KeyDetector"]
 position = Vector2( 0, 16.5 )
 shape = SubResource( 66 )
 disabled = true
 
-[node name="anim" type="AnimationPlayer" parent="KeyDoor"]
+[node name="anim" type="AnimationPlayer" parent="Environment/Doors/KeyDoor"]
 autoplay = "Close"
 anims/Close = SubResource( 67 )
 anims/Open = SubResource( 68 )
 anims/RESET = SubResource( 69 )
 anims/Trigger = SubResource( 70 )
 
-[node name="dialogButton" type="Sprite" parent="KeyDoor"]
-position = Vector2( 0, -27 )
+[node name="dialogButton" type="Sprite" parent="Environment/Doors/KeyDoor"]
+position = Vector2( 0, -15.2174 )
 texture = ExtResource( 17 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 629, -229 )
-
-[node name="DungeonGui" type="CanvasLayer" parent="."]
-script = ExtResource( 12 )
-
-[node name="PlayerHead" type="Sprite" parent="DungeonGui"]
-position = Vector2( 8, 8 )
-scale = Vector2( 4, 4 )
-texture = ExtResource( 15 )
-centered = false
-
-[node name="PlayerLives" type="Sprite" parent="DungeonGui"]
-position = Vector2( 84, 42 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 13 )
-hframes = 5
-
-[node name="CoinNumber" type="Sprite" parent="DungeonGui"]
-position = Vector2( 984, 40 )
-scale = Vector2( 1.3, 1.3 )
-texture = ExtResource( 14 )
-
-[node name="CoinText" type="Label" parent="DungeonGui"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -112.0
-margin_top = 32.0
-margin_right = -72.0
-margin_bottom = 46.0
-text = "0"
-align = 2
-
-[node name="Key" type="Sprite" parent="DungeonGui"]
-position = Vector2( 886, 39 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 10 )
-
-[node name="KeyNum" type="Label" parent="DungeonGui"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -198.0
-margin_top = 32.0
-margin_right = -158.0
-margin_bottom = 46.0
-text = "0"
-align = 2
-
-[node name="DefeatAllEnemy" type="Node2D" parent="."]
-script = ExtResource( 19 )
-
-[node name="FlyingBug" parent="DefeatAllEnemy" instance=ExtResource( 18 )]
-position = Vector2( 389, -400 )
-collision_mask = 52
-
-[node name="FlyingBug2" parent="DefeatAllEnemy" instance=ExtResource( 18 )]
-position = Vector2( 652, -420 )
-collision_mask = 52
-
-[node name="FlyingBug3" parent="DefeatAllEnemy" instance=ExtResource( 18 )]
-position = Vector2( 522, -483 )
-collision_mask = 52
-
-[node name="PlayerEntered" type="Area2D" parent="DefeatAllEnemy"]
-script = ExtResource( 21 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefeatAllEnemy/PlayerEntered"]
-position = Vector2( 640, -300 )
-shape = SubResource( 74 )
-
-[node name="EnemyDoor" type="StaticBody2D" parent="."]
+[node name="EnemyDoor" type="StaticBody2D" parent="Environment/Doors"]
 position = Vector2( 640, -268 )
 scale = Vector2( 2.3, -2.3 )
 collision_layer = 8
 script = ExtResource( 20 )
 
-[node name="Sprite" type="Sprite" parent="EnemyDoor"]
+[node name="Sprite" type="Sprite" parent="Environment/Doors/EnemyDoor"]
 position = Vector2( 1.52588e-05, -8 )
 texture = ExtResource( 2 )
 hframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDoor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Doors/EnemyDoor"]
 position = Vector2( 0.333389, -2.66667 )
 shape = SubResource( 51 )
 
-[node name="anim" type="AnimationPlayer" parent="EnemyDoor"]
+[node name="anim" type="AnimationPlayer" parent="Environment/Doors/EnemyDoor"]
 anims/Close = SubResource( 71 )
 anims/Open = SubResource( 72 )
 anims/RESET = SubResource( 73 )
 
-[node name="audio" type="AudioStreamPlayer" parent="EnemyDoor"]
+[node name="audio" type="AudioStreamPlayer" parent="Environment/Doors/EnemyDoor"]
 stream = ExtResource( 7 )
 volume_db = -6.0
 
-[connection signal="area_entered" from="Switch" to="Switch" method="_on_Switch_area_entered"]
-[connection signal="switch_triggered" from="Switch" to="bossDoor" method="_on_Switch_switch_triggered"]
-[connection signal="area_entered" from="Chest/Area2D" to="Chest" method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="KeyDoor/KeyDetector" to="KeyDoor" method="_on_KeyDetector_body_entered"]
-[connection signal="enemy_defeated" from="DefeatAllEnemy" to="EnemyDoor" method="_on_DefeatAllEnemy_enemy_defeated"]
-[connection signal="body_entered" from="DefeatAllEnemy/PlayerEntered" to="DefeatAllEnemy/PlayerEntered" method="_on_PlayerEntered_body_entered"]
-[connection signal="player_entered" from="DefeatAllEnemy/PlayerEntered" to="EnemyDoor" method="_on_PlayerEntered_player_entered"]
+[node name="Interactables" type="YSort" parent="Environment"]
+
+[node name="Switch" type="Area2D" parent="Environment/Interactables"]
+position = Vector2( 298, 304 )
+collision_layer = 8
+collision_mask = 16
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Interactables/Switch"]
+position = Vector2( 0, -4 )
+shape = SubResource( 52 )
+
+[node name="Sprite" type="Sprite" parent="Environment/Interactables/Switch"]
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 6
+
+[node name="anim" type="AnimationPlayer" parent="Environment/Interactables/Switch"]
+autoplay = "Closed"
+anims/Closed = SubResource( 53 )
+anims/Opened = SubResource( 54 )
+anims/RESET = SubResource( 55 )
+anims/Triggered = SubResource( 56 )
+
+[node name="Chest" type="StaticBody2D" parent="Environment/Interactables"]
+position = Vector2( 373, 155 )
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Environment/Interactables/Chest"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 8 )
+hframes = 2
+vframes = 4
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Interactables/Chest"]
+position = Vector2( 0, -8 )
+shape = SubResource( 60 )
+
+[node name="Area2D" type="Area2D" parent="Environment/Interactables/Chest"]
+position = Vector2( 0, -8 )
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Interactables/Chest/Area2D"]
+shape = SubResource( 61 )
+disabled = true
+
+[node name="anim" type="AnimationPlayer" parent="Environment/Interactables/Chest"]
+autoplay = "Close"
+anims/Close = SubResource( 62 )
+anims/Open = SubResource( 63 )
+anims/RESET = SubResource( 64 )
+
+[node name="spawnPoint" type="Position2D" parent="Environment/Interactables/Chest"]
+position = Vector2( 23, 18 )
+
+[node name="audio" type="AudioStreamPlayer" parent="Environment/Interactables/Chest"]
+stream = ExtResource( 7 )
+
+[node name="Enemies" type="YSort" parent="Environment"]
+
+[node name="DefeatAllEnemy" type="Node2D" parent="Environment/Enemies"]
+script = ExtResource( 19 )
+
+[node name="FlyingBug" parent="Environment/Enemies/DefeatAllEnemy" instance=ExtResource( 18 )]
+position = Vector2( 389, -400 )
+collision_mask = 52
+
+[node name="FlyingBug2" parent="Environment/Enemies/DefeatAllEnemy" instance=ExtResource( 18 )]
+position = Vector2( 652, -420 )
+collision_mask = 52
+
+[node name="FlyingBug3" parent="Environment/Enemies/DefeatAllEnemy" instance=ExtResource( 18 )]
+position = Vector2( 522, -483 )
+collision_mask = 52
+
+[node name="PlayerEntered" type="Area2D" parent="Environment/Enemies/DefeatAllEnemy"]
+script = ExtResource( 21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/DefeatAllEnemy/PlayerEntered"]
+position = Vector2( 640, -300 )
+shape = SubResource( 74 )
+
+[node name="MovingSpike" type="StaticBody2D" parent="Environment/Enemies"]
+position = Vector2( 540, 332 )
+script = ExtResource( 23 )
+length = Vector2( 0, -100 )
+
+[node name="Sprite" type="Sprite" parent="Environment/Enemies/MovingSpike"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/MovingSpike"]
+position = Vector2( -1, 2 )
+shape = SubResource( 75 )
+
+[node name="Tween" type="Tween" parent="Environment/Enemies/MovingSpike"]
+
+[node name="Area2D" type="Area2D" parent="Environment/Enemies/MovingSpike" groups=["Enemy"]]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Enemies/MovingSpike/Area2D"]
+position = Vector2( -0.5, 0.5 )
+scale = Vector2( 1.52, 1.6 )
+shape = SubResource( 76 )
+
+[node name="EntranceDoor" type="Area2D" parent="."]
+position = Vector2( 178, 540 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntranceDoor"]
+position = Vector2( -0.5, -1 )
+shape = SubResource( 77 )
+
+[connection signal="body_entered" from="Environment/Doors/KeyDoor/KeyDetector" to="Environment/Doors/KeyDoor" method="_on_KeyDetector_body_entered"]
+[connection signal="area_entered" from="Environment/Interactables/Switch" to="Environment/Interactables/Switch" method="_on_Switch_area_entered"]
+[connection signal="switch_triggered" from="Environment/Interactables/Switch" to="Environment/Doors/bossDoor" method="_on_Switch_switch_triggered"]
+[connection signal="area_entered" from="Environment/Interactables/Chest/Area2D" to="Environment/Interactables/Chest" method="_on_Area2D_area_entered"]
+[connection signal="enemy_defeated" from="Environment/Enemies/DefeatAllEnemy" to="Environment/Doors/EnemyDoor" method="_on_DefeatAllEnemy_enemy_defeated"]
+[connection signal="body_entered" from="Environment/Enemies/DefeatAllEnemy/PlayerEntered" to="Environment/Enemies/DefeatAllEnemy/PlayerEntered" method="_on_PlayerEntered_body_entered"]
+[connection signal="player_entered" from="Environment/Enemies/DefeatAllEnemy/PlayerEntered" to="Environment/Doors/EnemyDoor" method="_on_PlayerEntered_player_entered"]
+[connection signal="tween_completed" from="Environment/Enemies/MovingSpike/Tween" to="Environment/Enemies/MovingSpike" method="_on_Tween_tween_completed"]
+[connection signal="body_entered" from="EntranceDoor" to="." method="_on_EntranceDoor_body_entered"]
