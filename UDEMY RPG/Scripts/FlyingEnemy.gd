@@ -48,6 +48,7 @@ func player_detectable():
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Sword"):
 		flash()
+		$audiohit.play()
 		health -= Global.player_damage
 		knockback = area.knockback_vector * 120
 		yield(get_tree().create_timer(0.7), "timeout")
