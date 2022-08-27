@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LTTP_Grass_Cut.wav-eae3047491fe1d8c2324f22e5997f66b.sample"
+
+[deps]
+
+source_file="res://Sounds/GameSounds/LTTP_Grass_Cut.wav"
+dest_files=[ "res://.import/LTTP_Grass_Cut.wav-eae3047491fe1d8c2324f22e5997f66b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

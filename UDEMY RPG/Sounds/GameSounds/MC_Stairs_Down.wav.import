@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MC_Stairs_Down.wav-30cc1eaa3b80d6aff588c8a2f87e0d25.sample"
+
+[deps]
+
+source_file="res://Sounds/GameSounds/MC_Stairs_Down.wav"
+dest_files=[ "res://.import/MC_Stairs_Down.wav-30cc1eaa3b80d6aff588c8a2f87e0d25.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
