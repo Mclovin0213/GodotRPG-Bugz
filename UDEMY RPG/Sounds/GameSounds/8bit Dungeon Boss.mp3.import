@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/8bit Dungeon Boss.mp3-131055d9f53982d6c0094a2a5408d887.mp3str"
+
+[deps]
+
+source_file="res://Sounds/GameSounds/8bit Dungeon Boss.mp3"
+dest_files=[ "res://.import/8bit Dungeon Boss.mp3-131055d9f53982d6c0094a2a5408d887.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
