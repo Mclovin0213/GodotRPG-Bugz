@@ -12,7 +12,6 @@
 [ext_resource path="res://Prefabs/Items/Coin.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/Nature/Grass.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Prefabs/Enemys/JumpEnemy.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Prefabs/Enemys/FlyingBug.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Prefabs/Nature/Tree_2.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Prefabs/GUI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Sounds/music.wav" type="AudioStream" id=16]
@@ -229,16 +228,19 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 10.999, 616.5 )
+extents = Vector2( 57.9995, 616.5 )
 
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 52.5, 10 )
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 95.5, 14.75 )
 
 [node name="Main" type="YSort"]
 script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 408, -210 )
+position = Vector2( -403, -424 )
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -1075,15 +1077,27 @@ scale = Vector2( 3, 3 )
 [node name="Enemies" type="YSort" parent="Enivironment"]
 
 [node name="JumpEnemy" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 362, -318 )
+position = Vector2( -413, -74 )
 
-[node name="FlyingBug" parent="Enivironment/Enemies" instance=ExtResource( 13 )]
-position = Vector2( 228, 26 )
+[node name="JumpEnemy2" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( -282, 40 )
+
+[node name="JumpEnemy3" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( -110, -45 )
+
+[node name="JumpEnemy4" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( -157, 46 )
+
+[node name="JumpEnemy5" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( -293, -70 )
+
+[node name="JumpEnemy6" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
+position = Vector2( -405, 54 )
 
 [node name="Other" type="YSort" parent="Enivironment"]
 
 [node name="Coins" type="YSort" parent="Enivironment/Other"]
-position = Vector2( 1, 24 )
+position = Vector2( -510, -630 )
 
 [node name="Coin" parent="Enivironment/Other/Coins" instance=ExtResource( 10 )]
 
@@ -1237,36 +1251,60 @@ texture = ExtResource( 21 )
 [node name="WaterCol" type="StaticBody2D" parent="Enivironment/Other"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
-position = Vector2( 762, -191 )
+position = Vector2( 809, -191 )
 shape = SubResource( 24 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
-position = Vector2( -491, -194 )
+position = Vector2( -539, -191 )
 shape = SubResource( 24 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
-position = Vector2( 135.5, -492 )
+position = Vector2( 137, -536 )
 rotation = 1.57079
 shape = SubResource( 24 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
-position = Vector2( 139, 105 )
+position = Vector2( 136, 154 )
 rotation = 1.57079
 shape = SubResource( 24 )
+
+[node name="Dropdown" type="StaticBody2D" parent="Enivironment/Other"]
+position = Vector2( -119, -99 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enivironment/Other/Dropdown"]
+position = Vector2( 4.5, 0 )
+rotation = -3.14159
+shape = SubResource( 25 )
+one_way_collision = true
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = -8.0
 autoplay = true
 
-[node name="Dropdown" type="StaticBody2D" parent="."]
-position = Vector2( -119, -99 )
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -502, -46 )
+scale = Vector2( 2.222, 2.088 )
+collision_layer = 2048
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dropdown"]
-position = Vector2( 4.5, 0 )
-rotation = -3.14159
-shape = SubResource( 25 )
-one_way_collision = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 108.461, -46.4559 )
+shape = SubResource( 26 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -3, 4 )
+rotation = -1.56591
+shape = SubResource( 26 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 106.211, 84.7701 )
+shape = SubResource( 26 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 216, 5 )
+rotation = -1.56591
+shape = SubResource( 26 )
 
 [connection signal="body_entered" from="Enivironment/Other/Houses/House/Door" to="Enivironment/Other/Houses/House" method="_on_Door_body_entered"]
 [connection signal="body_entered" from="Enivironment/Other/Houses/House/SpawnPoint" to="Enivironment/Other/Houses/House" method="_on_SpawnPoint_body_entered"]

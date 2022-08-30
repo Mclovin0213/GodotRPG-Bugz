@@ -7,6 +7,8 @@ radius = 12.3693
 
 [node name="Bush" type="StaticBody2D"]
 scale = Vector2( 0.75, 0.75 )
+collision_layer = 5
+collision_mask = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
