@@ -9,6 +9,7 @@ radius = 6.0
 [sub_resource type="Animation" id=2]
 resource_name = "Jump"
 length = 0.8
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -16,10 +17,27 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.601, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 0 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 6, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "move"
+}, {
+"args": [  ],
+"method": "stop_tween"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -48,7 +66,6 @@ radius = 37.0
 
 [node name="JumpEnemy" type="KinematicBody2D"]
 position = Vector2( 400, 200 )
-scale = Vector2( 2, 2 )
 collision_layer = 4
 collision_mask = 20
 script = ExtResource( 2 )
@@ -86,6 +103,8 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
 position = Vector2( -1, 0 )
 shape = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="playerDetector" to="." method="_on_playerDetector_body_entered"]

@@ -238,7 +238,7 @@ extents = Vector2( 52.5, 10 )
 script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( -407, -413 )
+position = Vector2( 408, -210 )
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -1075,7 +1075,7 @@ scale = Vector2( 3, 3 )
 [node name="Enemies" type="YSort" parent="Enivironment"]
 
 [node name="JumpEnemy" parent="Enivironment/Enemies" instance=ExtResource( 12 )]
-position = Vector2( 458, -21 )
+position = Vector2( 362, -318 )
 
 [node name="FlyingBug" parent="Enivironment/Enemies" instance=ExtResource( 13 )]
 position = Vector2( 228, 26 )

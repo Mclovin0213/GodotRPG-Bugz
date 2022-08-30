@@ -3,26 +3,13 @@ extends KinematicBody2D
 onready var deathFX = preload("res://Prefabs/Effects/deathEffect.tscn")
 onready var anim = $anim
 
-export var speed = 100
-export var max_speed = 120
-export var jump_impulse = 10
-export var jump_length = 30
-export var friction = 5
-
-var velocity = Vector2.ZERO
-var state = WANDER
-var curr_position = Vector2.ZERO
-
+var length = Vector2(50,50)
+export(float) var speed = 1
 
 var knockback = Vector2.ZERO
 var health = 2
 
 var rng = RandomNumberGenerator.new()
-
-enum {
-	WANDER,
-	ATTACK
-}
 
 
 func _ready():
@@ -31,12 +18,21 @@ func _ready():
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, 140 * delta)
 	knockback = move_and_slide(knockback)
+	
+func move():
+	$Tween.interpolate_property(
+		self,
+		"position",
+		global_position,
+		global_position + length,
+		speed,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT
+	)
+	$Tween.start()
 
-	match state:
-		WANDER:
-			pass
-		ATTACK:
-			pass
+func stop_tween():
+	$Tween.stop(self)
 
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Sword"):
