@@ -1313,7 +1313,7 @@ rotation = -1.56591
 shape = SubResource( 26 )
 
 [node name="Boss" parent="." instance=ExtResource( 18 )]
-position = Vector2( 488, -43 )
+position = Vector2( 166, 10 )
 
 [connection signal="enemy_defeated" from="Enivironment/Enemies/DefeatAll" to="Enivironment/Nature/Green_rocks/GreenRock" method="_on_DefeatAll_enemy_defeated"]
 [connection signal="enemy_defeated" from="Enivironment/Enemies/DefeatAll" to="Enivironment/Nature/GreenRock" method="_on_DefeatAll_enemy_defeated"]

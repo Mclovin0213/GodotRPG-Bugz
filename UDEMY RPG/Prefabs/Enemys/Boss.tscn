@@ -62,11 +62,17 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.4 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "flip_check"
+"method": "teleport_forward"
+}, {
+"args": [  ],
+"method": "teleport_forward"
+}, {
+"args": [  ],
+"method": "attack_finish"
 } ]
 }
 
@@ -175,7 +181,7 @@ height = 29.0
 radius = 211.572
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 59.0021
+radius = 39.5506
 
 [node name="Boss" type="KinematicBody2D"]
 position = Vector2( 286, 160 )
@@ -200,6 +206,7 @@ anims/RESET = SubResource( 3 )
 anims/Walk = SubResource( 4 )
 
 [node name="hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 16
 
@@ -208,12 +215,14 @@ position = Vector2( -2, 9 )
 shape = SubResource( 5 )
 
 [node name="playerDetector" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
 position = Vector2( -2, 9 )
 shape = SubResource( 6 )
 
 [node name="Sword" type="Area2D" parent="." groups=["Sword"]]
+visible = false
 collision_layer = 4
 script = ExtResource( 3 )
 
@@ -228,6 +237,7 @@ volume_db = -9.0
 [node name="attackDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackDetector"]
+position = Vector2( -1, 7.5 )
 shape = SubResource( 9 )
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
