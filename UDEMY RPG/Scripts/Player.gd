@@ -67,3 +67,10 @@ func _on_hitbox_area_entered(area):
 		if Global.player_lives <= 0:
 			get_tree().reload_current_scene()
 			Global.player_lives = 5
+	if area.is_in_group("BossSword"):
+		flash()
+		Global.player_lives -= 1
+		if Global.player_lives <= 0:
+			get_tree().reload_current_scene()
+			Global.player_lives = 5
+

@@ -4,13 +4,11 @@ onready var deathFX = preload("res://Prefabs/Effects/deathEffect.tscn")
 onready var playerDetector = $playerDetector
 
 var velocity = Vector2.ZERO
-var speed = 1000
-var max_speed = 2000
+var speed = 0.0
+var max_speed = 1000
 var friction = 5
 var player = null
 var state = ATTACK
-var attackB = false
-var charge = false
 var flip
 
 enum {
@@ -23,6 +21,7 @@ var health = 20
 
 func _physics_process(delta):
 	flip_check()
+	speed_increase()
 	knockback = knockback.move_toward(Vector2.ZERO, 140 * delta)
 	knockback = move_and_slide(knockback)
 	
@@ -34,9 +33,6 @@ func _physics_process(delta):
 			if player != null:
 				var direction = (player.global_position - global_position).normalized()
 				velocity = velocity.move_toward(direction * speed, max_speed * delta)
-				if charge == true:
-					velocity == velocity.bounce(direction)
-					charge = false
 			else:
 				state = IDLE
 				player = null
@@ -63,16 +59,16 @@ func flip_check():
 	else:
 		flip = true
 
-func teleport_forward():
-	charge = true
-
-func attack_finish():
-	attackB = false
+func speed_increase():
+	yield(get_tree().create_timer(0.3), "timeout")
+	speed += 1
 	
 func _on_hitbox_area_entered(area):
 	if area.is_in_group("Sword"):
 		flash()
 		$audiohit.play()
+		$anim.play("Walk")
+		speed = 0
 		health -= Global.player_damage
 		knockback = area.knockback_vector * 1000
 		yield(get_tree().create_timer(0.7), "timeout")
@@ -83,19 +79,16 @@ func _on_hitbox_area_entered(area):
 			queue_free()
 
 func _on_playerDetector_body_entered(body):
-	if body.name == "Player" && attackB == false:
-			player = body
-	else:
-			player = null
+	if body.name == "Player":
+		player = body
+		$anim.play("Walk")
 
 func _on_playerDetector_body_exited(body):
 	if body.name == "Player":
 		player = null
 		velocity = Vector2.ZERO
+		print(5)
 
 func _on_attackDetector_body_entered(body):
 	if body.name == "Player":
-		attackB = true
-		velocity = Vector2.ZERO
 		$anim.play("Attack")
-

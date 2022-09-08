@@ -1257,7 +1257,7 @@ texture = ExtResource( 21 )
 [node name="WaterCol" type="StaticBody2D" parent="Enivironment/Other"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]
-position = Vector2( 809, -191 )
+position = Vector2( 805, -191 )
 shape = SubResource( 24 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enivironment/Other/WaterCol"]

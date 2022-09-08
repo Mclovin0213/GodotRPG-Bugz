@@ -55,26 +55,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [ PoolVector2Array( -24, 14.5, -13, 26, 9, 27, 32.5, 12, 29, -20.5, 24, 1.5, 9.5, 17 ), PoolVector2Array( -29.5, -5.5, -23.5, -23.5, -7.5, -31, 15, -31, 25.5, -21, -10, -22.5, -15.5, 1.5 ), PoolVector2Array( -31.5, -20.5, -15, -32, 5, -31.5, 22, -21.5, 24.5, 3, 0, -26 ), PoolVector2Array( -20.5, 29.5, -9, 24.5, 17, 19.5, 8, 31.5 ) ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "teleport_forward"
-}, {
-"args": [  ],
-"method": "teleport_forward"
-}, {
-"args": [  ],
-"method": "attack_finish"
-} ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -178,10 +158,10 @@ radius = 13.5
 height = 29.0
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 211.572
+radius = 166.591
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 39.5506
+radius = 32.5038
 
 [node name="Boss" type="KinematicBody2D"]
 position = Vector2( 286, 160 )
@@ -206,7 +186,6 @@ anims/RESET = SubResource( 3 )
 anims/Walk = SubResource( 4 )
 
 [node name="hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 16
 
@@ -215,14 +194,12 @@ position = Vector2( -2, 9 )
 shape = SubResource( 5 )
 
 [node name="playerDetector" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetector"]
 position = Vector2( -2, 9 )
 shape = SubResource( 6 )
 
-[node name="Sword" type="Area2D" parent="." groups=["Sword"]]
-visible = false
+[node name="Sword" type="Area2D" parent="." groups=["BossSword"]]
 collision_layer = 4
 script = ExtResource( 3 )
 
@@ -237,10 +214,11 @@ volume_db = -9.0
 [node name="attackDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackDetector"]
-position = Vector2( -1, 7.5 )
+position = Vector2( 0, 9 )
 shape = SubResource( 9 )
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="playerDetector" to="." method="_on_playerDetector_body_entered"]
 [connection signal="body_exited" from="playerDetector" to="." method="_on_playerDetector_body_exited"]
 [connection signal="body_entered" from="attackDetector" to="." method="_on_attackDetector_body_entered"]
+[connection signal="body_exited" from="attackDetector" to="." method="_on_attackDetector_body_exited"]
